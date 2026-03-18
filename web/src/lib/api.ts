@@ -4,6 +4,15 @@ export type PlanResponse = { summary: string; items: string[]; score: number };
 export type InsightsRequest = { selection: string; context: string };
 export type InsightsResponse = { insights: string[]; next_actions: string[]; highlights: string[] };
 
+// Used by CollectionPanel + legacy components (kept minimal for build compatibility)
+export type PlanningSnapshot = {
+  id: number;
+  title: string;
+  status: string;
+  created_at: string;
+  promoted_insights: string[];
+};
+
 export async function generatePlan(payload: PlanRequest): Promise<PlanResponse> {
   const res = await fetch("/api/plan", {
     method: "POST",
